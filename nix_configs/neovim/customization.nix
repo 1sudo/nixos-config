@@ -18,30 +18,6 @@ let
       hash = "sha256-PSzfzoyo82aIVsVtVl/DOLN/qwPF1rUKEjkSIKmMFow=";
     };
   };
-  # currently unused
-  # base16-vim-airline-themes = pkgs.vimUtils.buildVimPlugin {
-  #   pname = "base16-vim-airline-themes";
-  #   version = "2021-11-05";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "dawikur";
-  #     repo = "base16-vim-airline-themes";
-  #     rev = "925a56f54c2d980db4ec986aae6e4ae29d27ee45";
-  #     sha256 = "sha256-j2xMeu1r0j6bGYDu25jnb39j30iYXf6YoHWuDQJ/zl8=";
-  #   };
-  # };
-  # currently unused
-  # telescope-floaterm-nvim = (pkgs.vimUtils.buildVimPlugin rec {
-  #   pname = "telescope-floaterm-nvim";
-  #   version = "2023-02-02";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "dawsers";
-  #     repo = "telescope-floaterm.nvim";
-  #     rev = "37f59fd774811ab69d079440d695a86c75378b12";
-  #     sha256 = "sha256-nbkehtQFpk12+7bqUZryjHnyGgLYm595lNynJuq+b5E=";
-  #   };
-  # }).overrideAttrs (oldAttrs: rec {
-  #   dependencies = [ pkgs.vimPlugins.telescope-nvim ];
-  # });
 in
 {
   customRC = vimrc;
@@ -56,7 +32,7 @@ in
       # hm, there are a lot of alternatives here and I'm not 100%
       # happy with the statusline (tbh, this was simply the goto at
       # the time I created my first (neo)vim config)
-      heirline-nvim
+      # heirline-nvim
 
       nvim-lspconfig
       # project-specific lsp configs in json files
@@ -150,8 +126,6 @@ in
       # float-window fuzzy finder + integrations
       telescope-nvim
       telescope-fzf-native-nvim
-      # I've stopped using floaterm (see above)
-      # telescope-floaterm-nvim
 
       # bottom-bar list of quickfixes, diagnostics, telescope results,
       # lsp results, etc

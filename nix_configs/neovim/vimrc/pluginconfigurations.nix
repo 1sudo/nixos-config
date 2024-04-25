@@ -34,5 +34,6 @@ in
   ${trouble}
   ${aerial}
   ${floaterm}
-  :luafile ${./plugins/heirline.lua}
 ''
+
+# :luafile ${./plugins/heirline.lua}
