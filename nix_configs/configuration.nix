@@ -7,8 +7,9 @@
   nixpkgs.config.allowUnfree = true;
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
+      ./neovim/main.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -47,6 +48,13 @@
   environment.shellInit = ''
     source $HOME/.bashrc
   '';
+
+  programs.bash = {
+    shellAliases = {
+      firefox="nohup firefox > /dev/null 2>&1 &";
+      discord="nohup discord > /dev/null 2>&1 &";
+    };
+  };
 
   programs.sway = {
     enable = true;
