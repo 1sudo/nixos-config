@@ -1,0 +1,2 @@
+alias firefox="nohup firefox > /dev/null 2>&1 &"
+alias discord="nohup discord > /dev/null 2>&1 &"

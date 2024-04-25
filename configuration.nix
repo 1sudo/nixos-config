@@ -44,6 +44,10 @@
     pavucontrol
   ];
 
+  environment.shellInit = ''
+    source $HOME/.bashrc
+  '';
+
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -88,8 +92,6 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.libinput.enable = true;
 
-  programs.zsh.enable = true;
-
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
@@ -111,7 +113,6 @@
     uid = 1000;
     home = "/home/zac";
     createHome = true;
-    shell = pkgs.zsh;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
