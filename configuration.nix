@@ -101,6 +101,11 @@
     fsType = "nfs";
   };
 
+  fileSystems."/emby1" = {
+    device = "192.168.1.151:/mnt/user/emby1";
+    fsType = "nfs";
+  };
+
   users.users.zac = {
     isNormalUser = true;
     uid = 1000;
