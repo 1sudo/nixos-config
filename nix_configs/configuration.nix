@@ -43,7 +43,30 @@
     tmux
     screen
     pavucontrol
+    parsec-bin
+    obs-studio
+    webcord
+    parsec-bin
+    gnome.nautilus
+    bitwarden
   ];
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-extension-layer
+      amdvlk
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+  };
+
+  environment.variables.AMD_VULKAN_ICD = "RADV";
 
   environment.shellInit = ''
     source $HOME/.bashrc
@@ -53,6 +76,7 @@
     shellAliases = {
       firefox="nohup firefox > /dev/null 2>&1 &";
       discord="nohup discord > /dev/null 2>&1 &";
+      parsec="nohup parsecd > /dev/null 2>&1 &";
     };
   };
 
@@ -95,7 +119,10 @@
     };
   };
 
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.displayManager.defaultSession = "sway";
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.libinput.enable = true;
