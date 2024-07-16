@@ -148,4 +148,15 @@ lspconfig.tsserver.setup {
   on_attach = custom_lsp_attach,
   capabilities = capabilties,
 }
+lspconfig.gopls.setup {
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
 EOF

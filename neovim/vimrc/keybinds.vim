@@ -56,8 +56,8 @@ nnoremap <Leader>sh :nohlsearch<CR> " remove highlighting for the last search
 
 nnoremap <leader>ep <cmd>lua require('telescope.builtin').builtin()<cr>
 nnoremap <leader>es <cmd>lua require('telescope.builtin').grep_string()<cr>
-nnoremap <Leader>esr <cmd>lua require('telescope.builtin').live_grep()<CR>
-nnoremap <Leader>ef <cmd>lua require('telescope.builtin').find_files()<CR>
+nnoremap <C-f> <cmd>lua require('telescope.builtin').live_grep()<CR>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <Leader>efa <cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true,})<CR>
 nnoremap <Leader>eg <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <Leader>ega <cmd>lua require('telescope.builtin').git_files({recurse_submodules = true,})<cr>

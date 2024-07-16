@@ -123,6 +123,8 @@ in
     ninja
     obs-studio
     go
+    gopls
+    rust-analyzer
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         golang.go
