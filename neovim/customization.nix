@@ -89,6 +89,8 @@ in
       vim-devicons
       nvim-web-devicons
 
+      vim-go
+
       dracula-nvim
       catppuccin-nvim
       tokyonight-nvim

@@ -13,7 +13,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./neovim/main.nix
-      ./alacritty.nix
+      ./kitty.nix
     ];
 
   # Bootloader.
@@ -125,8 +125,8 @@ in
     go
     gopls
     rust-analyzer
-    kitty
     gimp
+    bitwarden-desktop
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         golang.go
