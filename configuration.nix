@@ -125,6 +125,8 @@ in
     go
     gopls
     rust-analyzer
+    kitty
+    gimp
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         golang.go

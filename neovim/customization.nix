@@ -90,6 +90,8 @@ in
       nvim-web-devicons
 
       dracula-nvim
+      catppuccin-nvim
+      tokyonight-nvim
     ];
 
     opt = [ ];
