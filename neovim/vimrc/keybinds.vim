@@ -3,7 +3,7 @@ let mapleader="\<SPACE>"
 let maplocalleader="\<SPACE>l"
 
 " toggle file tree
-nnoremap <Leader>ff :NERDTreeToggle<CR>
+nnoremap <Leader>t :NERDTreeToggle<CR>
 
 " window movement
 nnoremap <Leader>wj <C-W>j
@@ -14,6 +14,28 @@ nnoremap <Leader>wc :close<CR>
 nnoremap <Leader>ws :split<CR>
 nnoremap <Leader>wv :vsplit<CR>
 
+" Disable arrow keys
+cnoremap <Down> <Nop>
+cnoremap <Left> <Nop>
+cnoremap <Right> <Nop>
+cnoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+vnoremap <Down> <Nop>
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
+
+" Create new tab
+map nt :tabnew<CR>
+inoremap jj <Esc>
+"
 " spelling
 nnoremap <Leader>se :setlocal spell spelllang=en<CR>
 nnoremap <Leader>sd :setlocal spell spelllang=de<CR>

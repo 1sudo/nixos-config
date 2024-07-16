@@ -13,6 +13,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./neovim/main.nix
+      ./alacritty.nix
     ];
 
   # Bootloader.
@@ -110,7 +111,6 @@ in
     wget
     discord
     parsec-bin
-    kitty
     docker-compose
     protonup-qt
     vscode
