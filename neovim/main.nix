@@ -5,6 +5,7 @@
     enable = true;
     package = pkgs.neovim-unwrapped;
     defaultEditor = true;
+    vimAlias = true;
     configure = (import ./customization.nix { pkgs = pkgs; lib = lib; inputs = inputs; });
   };
 
@@ -28,6 +29,7 @@
       rust-analyzer
       omnisharp-roslyn
       nerdfonts
+      wl-clipboard
     ];
   };
 }

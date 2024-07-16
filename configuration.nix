@@ -95,11 +95,9 @@ in
     description = "zac";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
+      thunderbird
     ];
   };
-
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -107,30 +105,12 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.variables = { EDITOR = "vim"; };
-
   environment.systemPackages = with pkgs; [
-    (pkgs.neovim.override {
-        vimAlias = true;
-        configure = {
-	 packages.myPlugins = with pkgs.vimPlugins; {
-            start = [ vim-nix ];
-	   opt = [];
-	 };
-          customRC = ''
-            set relativenumber
-            set nocompatible
-            set backspace=indent,eol,start
-          '';
-        };
-      }
-    )
     unstable.vesktop
     wget
     discord
     parsec-bin
     kitty
-    nerdfonts
     docker-compose
     protonup-qt
     vscode
@@ -193,5 +173,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

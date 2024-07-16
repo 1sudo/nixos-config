@@ -1,5 +1,3 @@
-set backup " keep a backup copy when overwriting
-
 set history=100 " 100 items in history
 
 set signcolumn=auto:3 " always show sign column

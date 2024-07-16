@@ -2,22 +2,6 @@
 
 let 
   vimrc = pkgs.callPackage ./vimrc.nix {};
-  base16-custom-themes = pkgs.runCommand "base16-custom-themes" {} ''
-    mkdir -p $out/colors
-    cp ${./colors/glowing-greens.vim} $out/colors/base16-glowing-greens.vim
-    mkdir -p $out/autoload/airline/themes
-    cp ${./colors/glowing-greens.airline.vim} $out/autoload/airline/themes/base16_glowing_greens.vim
-  '';
-  hoversplit_nvim = pkgs.vimUtils.buildVimPlugin {
-    pname = "hoversplit_nvim";
-    version = "2023-09-09";
-    src = pkgs.fetchFromGitHub {
-      owner = "roobert";
-      repo = "hoversplit.nvim";
-      rev= "c7c6b5596fed3287a3b20dbe772c8211a99cebc7";
-      hash = "sha256-PSzfzoyo82aIVsVtVl/DOLN/qwPF1rUKEjkSIKmMFow=";
-    };
-  };
 in
 {
   customRC = vimrc;
@@ -29,16 +13,9 @@ in
       # ui component lib, dependency
       nui-nvim
 
-      # hm, there are a lot of alternatives here and I'm not 100%
-      # happy with the statusline (tbh, this was simply the goto at
-      # the time I created my first (neo)vim config)
-      # heirline-nvim
-
       nvim-lspconfig
-      # project-specific lsp configs in json files
-      nlsp-settings-nvim
-
       vim-vsnip
+
       # allows vim-snip to use lsp snippets
       # (integrated into completions via cmp-snip)
       vim-vsnip-integ
@@ -68,28 +45,12 @@ in
       vim-automkdir
       # support editorconfig files
       editorconfig-vim
-      # edit gpg encrypted files
-      vim-gnupg
-
       # grammar checking
       vim-grammarous
-      # check (ba)sh scripts
-      pkgs.vimPlugins.vim-shellcheck
-
-      # terminal organisation
-      # I've stopped using this,terminals outside neovim just work better for me
-      # vim-floaterm
-
-      # TODO: replace with neo-tree or smth
+     # TODO: replace with neo-tree or smth
       # folder viewer
       pkgs.vimPlugins.nerdtree
       pkgs.vimPlugins.nerdtree-git-plugin
-      # folder viewer that can be used as a sidebar and window, etc
-      neo-tree-nvim
-
-      # jumping between () but also for language specific constructcs
-      # (e.g. if/else,etc)
-      vim-matchup
       # comment lines/blocks out via keybind
       vim-commentary
       # delete parts camelCase or PascalCase etc words
@@ -99,12 +60,6 @@ in
       # TODO: configure/use this
       # (allows to delete/change/etc pairs of surroundings, i.e. parentheses, etc)
       vim-surround
-      # unused,doesn't work with current colorscheme: vim-indent-guides # original is thaerkh/vim-indentguides
-      # . action support for plugin actions
-      # TODO: configure/use this? Or am I using this withotu knowing?
-      # not sure
-      vim-repeat
-
       # highlight parentheses in different colors
       # TODO: adjust colors to coloschem
       rainbow # original is frazrepo/vim-rainbow
@@ -118,11 +73,6 @@ in
       # also part of vim-polyglot: vim-ledger
       # highlighting, syntax detection grammars
       nvim-treesitter.withAllGrammars
-      # eww config langauge
-      yuck-vim
-      # lfe (lisp flavored erlang)
-      vim-lfe
-
       # float-window fuzzy finder + integrations
       telescope-nvim
       telescope-fzf-native-nvim
@@ -133,18 +83,13 @@ in
       # sidebar with outline of current document
       aerial-nvim
       # side/top/bottom-bar with lsp hover information
-      hoversplit_nvim
+      # hoversplit_nvim
 
       # icons
       vim-devicons
       nvim-web-devicons
 
-      # colorscheme
-      # unused: NeoSolarized
-      # unused: gruvbox
-      # unused: base16-vim
-      # unused: base16-vim-airline-themes
-      base16-custom-themes
+      dracula-nvim
     ];
 
     opt = [ ];

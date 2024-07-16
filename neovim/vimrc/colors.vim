@@ -18,18 +18,11 @@ augroup opaque_background
   au ColorScheme * highlight Conceal ctermbg=NONE guibg=NONE
   au ColorScheme * highlight Todo ctermbg=NONE guibg=NONE
   au ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
-  au ColorScheme * highlight GruvboxRedSign ctermbg=NONE guibg=NONE
-  au ColorScheme * highlight GruvboxGreenSign ctermbg=NONE guibg=NONE
-  au ColorScheme * highlight GruvboxYellowSign ctermbg=NONE guibg=NONE
-  au ColorScheme * highlight GruvboxBlueSign ctermbg=NONE guibg=NONE
-  au ColorScheme * highlight GruvboxPurpleSign ctermbg=NONE guibg=NONE
-  au ColorScheme * highlight GruvboxAquaSign ctermbg=NONE guibg=NONE
-  au ColorScheme * highlight GruvboxOrangeSign ctermbg=NONE guibg=NONE
 augroup END
 
 set background=dark
 
-colorscheme base16-glowing-greens
+colorscheme dracula
 
 " I have absolutely no idea why this is necessary now, lol
 lua << EOF

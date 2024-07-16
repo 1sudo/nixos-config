@@ -158,24 +158,8 @@ vim.api.nvim_set_keymap("n", "<leader>ln", '<cmd>lua require("trouble").next({sk
 vim.api.nvim_set_keymap("n", "<leader>lp", '<cmd>lua require("trouble").previous({skip_groups = true, jump = true})<CR>',
   {silent = true, noremap = true}
 )
-
--- make sure hoversplit is actually loaded..
-require("hoversplit").setup({})
-vim.api.nvim_set_keymap("n", "<leader>chs", '<cmd>lua require("hoversplit").split_remain_focused()<CR>',
-  {silent = true, noremap = true}
-)
-vim.api.nvim_set_keymap("n", "<leader>chv", '<cmd>lua require("hoversplit").vsplit_remain_focused()<CR>',
-  {silent = true, noremap = true}
-)
-vim.api.nvim_set_keymap("n", "<leader>chV", '<cmd>lua require("hoversplit").vsplit()<CR>',
-  {silent = true, noremap = true}
-)
-vim.api.nvim_set_keymap("n", "<leader>chS", '<cmd>lua require("hoversplit").split()<CR>',
-  {silent = true, noremap = true}
-)
-vim.api.nvim_set_keymap("n", "<leader>chc", '<cmd>lua require("hoversplit").close_hover_split()<CR>',
-  {silent = true, noremap = true}
-)
+vim.api.nvim_set_keymap('n', 'y', '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'y', '"+y', { noremap = true, silent = true })
 
 EOF
 

@@ -4,7 +4,6 @@ let
   camelCaseMotion = builtins.readFile ./plugins/CamelCaseMotion.vim;
   fzf = builtins.readFile ./plugins/fzf.vim;
   grammarous = builtins.readFile ./plugins/grammarous.vim;
-  gruvbox = builtins.readFile ./plugins/gruvbox.vim;
   lspconfig = builtins.readFile ./plugins/lspconfig.vim;
   nerdtree = builtins.readFile ./plugins/nerdtree.vim;
   rainbow = builtins.readFile ./plugins/rainbow.vim;
@@ -23,7 +22,6 @@ in
   ${completion}
   ${camelCaseMotion}  
   ${grammarous}  
-  ${gruvbox}
   ${lspconfig}  
   ${nerdtree}  
   ${rainbow}  
@@ -36,4 +34,3 @@ in
   ${floaterm}
 ''
 
-# :luafile ${./plugins/heirline.lua}
