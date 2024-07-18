@@ -28,7 +28,6 @@
       cmake-language-server
       rust-analyzer
       omnisharp-roslyn
-      nerdfonts
       wl-clipboard
     ];
   };

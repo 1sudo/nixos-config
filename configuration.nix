@@ -127,6 +127,8 @@ in
     rust-analyzer
     gimp
     bitwarden-desktop
+    slack
+    audacity
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         golang.go
