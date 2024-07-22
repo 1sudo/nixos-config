@@ -121,6 +121,8 @@ in
     clang_18
     clang-tools_18
     ninja
+    boost.dev
+    lua53Packages.lua
     obs-studio
     go
     gopls
@@ -129,6 +131,9 @@ in
     bitwarden-desktop
     slack
     audacity
+    ripgrep
+    meld
+    bambu-studio
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         golang.go
