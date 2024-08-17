@@ -30,6 +30,7 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.nameservers = ["1.1.1.1" "9.9.9.9"];
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -51,7 +52,12 @@ in
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = false;
+  services.xserver = {
+    enable = true;
+    #displayManager.gdm.enable = true;
+    #desktopManager.gnome.enable = true;
+  };
+
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.defaultSession = "plasma";
 
@@ -94,7 +100,7 @@ in
   users.users.zac = {
     isNormalUser = true;
     description = "zac";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
       thunderbird
     ];
@@ -103,13 +109,21 @@ in
   # Install firefox.
   programs.firefox.enable = true;
 
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    inotify-tools
     unstable.vesktop
     wget
     discord
+    teamspeak_client
+    teamspeak5_client
+    mumble
+    gnome.gnome-tweaks
     parsec-bin
     docker-compose
     protonup-qt
@@ -126,6 +140,8 @@ in
     obs-studio
     go
     gopls
+    cargo
+    rustc
     rust-analyzer
     gimp
     bitwarden-desktop
@@ -134,6 +150,14 @@ in
     ripgrep
     meld
     bambu-studio
+    guvcview # Logitech C920 utils
+    v4l-utils # ^
+    signal-desktop
+    butane
+    envsubst
+    kubectl
+    kubernetes-helm
+    ansible
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         golang.go
@@ -157,6 +181,11 @@ in
 
   # Required for VSCode under Wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  networking.extraHosts =
+  ''
+    192.168.1.205 rancher.cuemu.com
+  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
