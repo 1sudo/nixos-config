@@ -108,8 +108,12 @@
     plasma-panel-colorizer
     protonup-qt
     go
-    mariadb
   ];
+
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
 
   programs.steam = {
     enable = true;
