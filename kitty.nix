@@ -5,7 +5,7 @@ let
     name = "kitty.conf";
     text = ''
       foreground            #f8f8f2
-      background            #282a36
+      background            #190b26
       selection_foreground  #ffffff
       selection_background  #44475a
 

@@ -4,15 +4,10 @@
 
 { config, pkgs, ... }:
 
-let
-  unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-  unstable = import unstableTarball { config = config.nixpkgs.config; };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./neovim/main.nix
       ./kitty.nix
     ];
 
@@ -20,7 +15,6 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-f238a6c2-46b9-4b9d-a6be-783f2ac61529".device = "/dev/disk/by-uuid/f238a6c2-46b9-4b9d-a6be-783f2ac61529";
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -30,7 +24,6 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.nameservers = ["1.1.1.1" "9.9.9.9"];
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -52,14 +45,7 @@ in
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver = {
-    enable = true;
-    #displayManager.gdm.enable = true;
-    #desktopManager.gnome.enable = true;
-  };
-
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.defaultSession = "plasma";
+  services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -93,99 +79,48 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = [ "zac" ];
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zac = {
     isNormalUser = true;
-    description = "zac";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    packages = with pkgs; [
-      thunderbird
-    ];
+    description = "Zac";
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
 
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    inotify-tools
-    unstable.vesktop
+    discord-canary
+    helix
+    curl
     wget
-    discord
-    teamspeak_client
-    teamspeak5_client
-    mumble
-    gnome.gnome-tweaks
-    parsec-bin
-    docker-compose
-    protonup-qt
-    vscode
     git
-    pavucontrol
-    alsa-utils
-    vlc
-    clang_18
-    clang-tools_18
-    ninja
-    boost.dev
-    lua53Packages.lua
-    obs-studio
-    go
-    gopls
-    cargo
-    rustc
-    rust-analyzer
-    gimp
+    vscode
     bitwarden-desktop
-    slack
-    audacity
-    ripgrep
-    meld
-    bambu-studio
-    guvcview # Logitech C920 utils
-    v4l-utils # ^
-    signal-desktop
-    butane
-    envsubst
-    kubectl
-    kubernetes-helm
-    ansible
-    (vscode-with-extensions.override {
-      vscodeExtensions = with vscode-extensions; [
-        golang.go
-        ms-vscode.cpptools-extension-pack
-        jdinhlife.gruvbox
-        ms-azuretools.vscode-docker
-        ms-vscode-remote.remote-ssh
-        llvm-vs-code-extensions.vscode-clangd
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "remote-ssh-edit";
-          publisher = "ms-vscode-remote";
-          version = "0.47.2";
-          sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-        }
-      ];
-    })
+    parsec-bin
+    unzip
+    zip
+    plasma-panel-colorizer
+    protonup-qt
+    go
+    mariadb
   ];
 
-  programs.steam.enable=true;
+  programs.steam = {
+    enable = true;
+  };
 
-  # Required for VSCode under Wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  networking.extraHosts =
-  ''
-    192.168.1.205 rancher.cuemu.com
-  '';
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib  # libstdc++
+    zlib
+    glibc
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -212,5 +147,6 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
+
 }
