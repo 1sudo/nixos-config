@@ -108,6 +108,11 @@
     plasma-panel-colorizer
     protonup-qt
     go
+    htop
+    alsa-utils
+    gdb
+    libreoffice
+    obs-studio
   ];
 
   services.mysql = {
