@@ -113,6 +113,7 @@
     gdb
     libreoffice
     obs-studio
+    bottles
   ];
 
   services.mysql = {
