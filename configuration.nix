@@ -114,6 +114,7 @@
     libreoffice
     obs-studio
     bottles
+    meld
   ];
 
   services.mysql = {
