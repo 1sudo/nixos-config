@@ -82,6 +82,8 @@
     docker-compose
     element-desktop
     talosctl
+    kubectl
+    kubernetes-helm
   ];
 
   services.transmission.settings.download-dir = "${config.services.transmission.home}/Downloads";
