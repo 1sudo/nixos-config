@@ -5,6 +5,9 @@
 { config, lib, pkgs, ... }:
 
 {
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -48,11 +51,8 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = false;
+  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -64,7 +64,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -96,6 +96,8 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  programs.hyprland.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -136,7 +138,25 @@
     kubecolor
     git-lfs
     tree
+    tmux
+    tailscale
+    vlc
+    kubectl-cnpg
+    wofi
+    hyprpaper
+    hyprwall
+    hyprlock
+    hypridle
   ];
+
+  boot.binfmt.registrations.appimage = {
+    wrapInterpreterInShell = false;
+    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    recognitionType = "magic";
+    offset = 0;
+    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+    magicOrExtension = ''\x7fELF....AI\x02'';
+  };
 
   services.transmission.settings = {
     download-dir = "${config.services.transmission.home}/Downloads";
@@ -175,6 +195,10 @@
       192.168.1.224 longhorn.warpsec.com
       192.168.1.224 wiki2.cuemu.com
       192.168.1.224 stats.warpsec.com
+      192.168.1.224 git.cuemu.com
+      192.168.1.224 vault.cuemu.com
+      192.168.1.224 kc.cuemu.com
+      192.168.1.224 kcadm.cuemu.com
     '';
 
   security.pam.loginLimits = [

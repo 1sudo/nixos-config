@@ -1,0 +1,35 @@
+inherits = "material_darker"
+
+"ui.background" = { bg = "dark_purple" }
+"ui.statusline" = { fg = "light_grey", bg = "medium_purple" }
+"ui.statusline.separator" = { bg = "light_purple" }
+"ui.bufferline" = { fg = "light_grey", bg = "dark_purple" }
+"ui.bufferline.active" = { bg = "medium_purple" }
+"ui.popup" = { bg = "medium_purple" }
+"ui.popup.info" = { bg = "medium_purple" }
+"ui.selection" = { bg = "light_purple" }
+"ui.linenr" = { fg = "light_purple" }
+"ui.linenr.selected" = { fg = "super_light_purple", bg = "subtle_blue_grey" }
+"ui.menu" = { fg = "light_grey", bg = "medium_purple" }
+"ui.menu.selected" = { bg = "light_purple" }
+"ui.highlight" = { bg = "light_purple" }
+"ui.text" = { fg = "light_grey" }
+"ui.virtual.inlay-hint" = { fg = "medium_grey" }
+"ui.window" = { bg = "light_purple", fg = "light_purple" }
+"ui.gutter.selected" = { bg = "subtle_blue_grey" }
+"ui.help" = { fg = "light_grey", bg = "medium_purple" }
+"diff.plus" = { fg = "green" }
+"diff.minus" = { fg = "red" }
+"diff.delta" = { fg = "orange" }
+"ui.gutter.delete" = { fg = "red" }
+"ui.gutter.insert" = { fg = "green" }
+"ui.gutter.modify" = { fg = "orange" }
+
+[palette]
+dark_purple = "#0c060d"
+medium_purple = "#330033"
+light_purple = "#990099"
+super_light_purple = "#ff00ff"
+subtle_blue_grey = "#46466d"
+light_grey = "#999999"
+medium_grey = "#666666"

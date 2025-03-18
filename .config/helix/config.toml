@@ -1,0 +1,45 @@
+theme = "x_theme"
+
+[editor]
+line-number = "relative"
+cursorline = true
+bufferline = "always"
+text-width = 80
+popup-border = "all"
+idle-timeout = 800
+default-line-ending = "lf"
+
+[editor.statusline]
+left = ["file-name", "read-only-indicator", "file-modification-indicator", "diagnostics", "workspace-diagnostics"]
+center = ["mode", "spinner"]
+right = ["selections", "position", "position-percentage", "file-encoding", "file-line-ending", "file-type"]
+separator = "|"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+enable = true
+display-messages = true
+display-inlay-hints = true
+
+[keys.normal]
+"C-d" = ["half_page_down", "goto_window_center"]
+"C-u" = ["half_page_up", "goto_window_center"]
+"C-w" = { v = [":vsplit-new", ":buffer-previous", "jump_view_left", ":buffer-previous"], c = ["jump_view_right", "wclose"] }
+
+[keys.normal.g]
+d = [":vsplit", "goto_definition"]
+D = [":vsplit", "goto_declaration"]
+i = [":vsplit", "goto_implementation"]
+r = [":vsplit", "goto_reference"]
+
+[keys.insert]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
