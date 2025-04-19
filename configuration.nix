@@ -105,6 +105,7 @@
     discord-canary
     helix
     curl
+    go
     wget
     git
     vscode
@@ -114,7 +115,6 @@
     zip
     plasma-panel-colorizer
     protonup-qt
-    go
     htop
     alsa-utils
     gdb
@@ -147,6 +147,35 @@
     hyprwall
     hyprlock
     hypridle
+    slack
+    grim
+    slurp
+    wl-clipboard
+    zls
+
+    # Necessary for Godot
+    dbus
+    fontconfig
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXinerama
+    xorg.libXrandr
+    xorg.libXrender
+    xorg.libXi
+    xorg.libXext
+    xorg.libXfixes
+    libxkbcommon
+    mesa
+    libGL
+    vulkan-loader
+    wayland
+    wayland-protocols
+    freetype
+    openssl
+    libGLU
+    alsa-lib
+    zlib
+    pulseaudio
   ];
 
   boot.binfmt.registrations.appimage = {
@@ -179,6 +208,16 @@
     package = pkgs.mariadb;
   };
 
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "cuemu-web" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+      host all all all trust
+    '';
+  };
+
   programs.steam = {
     enable = true;
   };
@@ -186,20 +225,32 @@
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc.lib  # libstdc++
-    zlib
     glibc
-  ];
 
-  networking.extraHosts =
-    ''
-      192.168.1.224 longhorn.warpsec.com
-      192.168.1.224 wiki2.cuemu.com
-      192.168.1.224 stats.warpsec.com
-      192.168.1.224 git.cuemu.com
-      192.168.1.224 vault.cuemu.com
-      192.168.1.224 kc.cuemu.com
-      192.168.1.224 kcadm.cuemu.com
-    '';
+    # Needed for Godot
+    libxkbcommon
+    dbus
+    mesa
+    libGL
+    vulkan-loader
+    wayland
+    wayland-protocols
+    freetype
+    openssl
+    libGLU
+    alsa-lib
+    zlib
+    fontconfig
+    pulseaudio
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXinerama
+    xorg.libXrandr
+    xorg.libXrender
+    xorg.libXi
+    xorg.libXext
+    xorg.libXfixes
+  ];
 
   security.pam.loginLimits = [
     { domain = "*"; item = "nofile"; type = "-"; value = "65536"; }
